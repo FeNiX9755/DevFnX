@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevFnX</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fork-awesome/1.2.0/css/fork-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+</head>
+
+<!--- this is the header --->
+
+<body>
+  <section class="header">
+    <!--- navigation bar --->
+    <nav id="navbar" class="navbar">
+      <!-- <a class="logo" href="index.html">DevFnX</a> -->
+      <a class="logo" href="#">DevFnX</a>
+      <div class="nav-links" id="navLinks">
+        <i class="fa fa-times" onclick="hideMenu()"></i>
+        <ul>
+          <!-- <li><a href="index.html"><strong>Home</strong></a></li> -->
+          <!-- <li><a href="about.html"><strong>About</strong></a></li> -->
+          <li><a href="#about">About</a></li>
+          <!-- <li><a href="portfolio.html"><strong>Portfolio</strong></a></li> -->
+          <li><a href="#portfolio"><strong>Portfolio</strong></a></li>
+          <!-- <li><a href="contact.html"><strong>Contact</strong></a></li> -->
+          <li><a href="#contactus"><strong>Contact</strong></a></li>
+        </ul>
+      </div>
+      <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+
+    <div class="text-box">
+      <h1>
+        <strong>Hello,
+          <!-- <span style="color: #e31b6d;">Chris Wang</span>, -->
+        </strong>
+      </h1>
+      <div id="text" class="container">
+        Welcome to
+        <span style="color: #a86432;">DevFnX</span>, <span class="auto-type"></span>
+      </div>
+      <!-- <a href="portfolio.html" class="hero-btn">View My Work</a> -->
+      <a href="#portfolio" class="hero-btn">View My Work</a>
+    </div>
+    <div id="loader" style="background-color: black"></div>
+  </section>
+
+  </div>
+
+  <!--- Hobbies --->
+  <section class="campus">
+    <h1>My Hobbies</h1>
+    <p>"I'm not a player. I'm a gamer. Players get chicks. I get achievements."</p>
+
+    <div class="row">
+      <div class="campus-col">
+        <img src="assets/Images/Gaming.jpeg">
+        <div class="layer">
+          <h3>Gaming</h3>
+        </div>
+      </div>
+      <div class="campus-col">
+        <img src="assets/Images/Cooking.jpg">
+        <div class="layer">
+          <h3>Cooking</h3>
+        </div>
+      </div>
+      <div class="campus-col">
+        <img src="assets/Images/Coding.jpeg">
+        <div class="layer">
+          <h3>Coding</h3>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!--- Facilities --->
+  <!---
+    <section class="facilities">
+      <h1>Our Facilities</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+
+      <div class="row">
+          <div class="facilities-col">
+          <img src="Images/library.png">
+          <h3>World Class Library</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque aliquet turpis nulla</p>
+          </div>
+          <div class="facilities-col">
+          <img src="Images/basketball.png">
+          <h3>Largest Play Ground</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque aliquet turpis nulla</p>
+          </div>
+          <div class="facilities-col">
+          <img src="Images/cafeteria.png">
+          <h3>Tasty and Healthy Food</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque aliquet turpis nulla</p>
+          </div>
+      </div>
+
+    </section> --->
+
+  <!-- About -->
+  <section class="about-us" id="about">
+    <h1 style="text-align: center;">About Me</h1>
+    <div class="row">
+      <div class="about-col">
+        <div class="about-col-img">
+          <img src="assets/Images/Chris.jpg">
+          <div class="about-col-info">
+            <div class="about-info">
+              <p><i class="fa fa-user-circle-o"></i><span class="title-s"> : </span> <span>Chris Wang</span></p>
+              <p><i class="fa fa-briefcase"></i><span class="title-s"> : </span> <span>Full-Stack Developer</span></p>
+              <!-- <p><i class="fa fa-envelope-o"></i><span class="title-s"> : </span> <a
+                  href="mailto:Gy.C.Wang55@gmail.com">info@DevFnX.com</a></p> -->
+              <!-- <p><i class="fa fa-phone"></i><span class="title-s"> : </span> +(27)76 31 80008</p>
+                <p><i class="fa fa-whatsapp"></i><span class="title-s"> : </span> <a href="https://web.whatsapp.com/send?phone=+27763180008" target="_blank" rel="noreferrer noopener">+(27)76 31 80008</a></p> -->
+            </div>
+          </div>
+        </div>
+        <h1>About Me</h1>
+
+        <p>Hello, I'm Guan-Yu, but everyone calls me Chris.</p>
+        <p>With a strong background in software development since 2017, I'm highly proficient in HTML5, CSS3, MySQL,
+          PostgreSQL, JavaScript, and PHP. I’m passionate about continuous improvement and personal growth, always
+          seeking out opportunities to expand my skill set and stay ahead in the ever-evolving tech landscape.</p>
+        <p>As a results-oriented developer, I thrive in deadline-driven environments and consistently deliver
+          high-quality, efficient solutions. My approach is grounded in collaboration and innovative problem-solving,
+          allowing me to work effectively in team settings and adapt to new challenges.</p>
+        <p>I'm committed to exceeding expectations and delivering impactful results through meticulous attention to
+          detail and a focus on long-term success.</p>
+        <a href="assets/Guan-Yu Wang (Chris) Official CV.pdf" class="hero-btn red-btn" target="_blank">Curriculum Vitae
+          (CV)</a>
+      </div>
+      <div class="skills">
+        <h1>Skills & Technologies</h1>
+        <div>
+          <li>HTML5 & CSS3</li>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+        </div>
+        <div>
+          <li>JavaScript</li>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+        </div>
+        <div>
+          <li>PHP</li>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+        </div>
+        <div>
+          <li>MySQL</li>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+        </div>
+        <div>
+          <li>PostGress SQL</li>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+        </div>
+        <div class="language">
+          <h2>Languages</h2>
+          <div>
+            <li>English</li>
+            <p>Fluent</p>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+          </div>
+          <div>
+            <li>Chinese (Mandarin)</li>
+            <p>Advanced</p>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+          </div>
+          <div>
+            <li>Afrikaans</li>
+            <p>Intermediate</p>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="about-cert">
+        <h1>Certificate</h1>
+        <li>Microsoft International Certificate Programming in HTML5 with JavaScript and CSS3 - Exam 480</li>
+        <li>Microsoft International Certificate Programming in C# - Exam 483 </li>
+        <li>Microsoft International Certificate Developing Mobile Apps - Exam 357</li>
+        <li>Microsoft International Certificate Developing Microsoft Azure and Web Services - Exam 487</li>
+        <li>Microsoft International Certificate Developing ASP.NET MVC Web Applications - Exam 486</li>
+        <li>Microsoft Certified Solutions Associate (MCSA)</li>
+        <li>Microsoft Certified Solutions Developer (MCSD)</li>
+        <li>Microsoft Certified Professional</li>
+      </div>
+      <div class="about-cert">
+        <h1>Education</h1>
+        <li>CTU Training Solutions</li>
+        <p>IT Database Development Certificate, Jan 2017 - Feb 2018 | Bloemfontein, South Africa, MCSD (Microsoft
+          Certified Solutions Developer)</p>
+        <li>CTU Training Solutions</li>
+        <p>IT Database Development Certificate, Jan 2018 - Feb 2019 | Bloemfontein, South Africa, MCSE : DA (Microsoft
+          Certified Solutions Expert : Data Analyst)</p>
+        <li>Grey College Secondary</li>
+        <p>National Senior Certificate, 2010 - 2015 | Bloemfontein, South Africa</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="about-cert" style="position: relative;left: 20vw;">
+        <h1>Experience</h1>
+        <li>Internal Full-Stack Developer - <span><strong>(2022 - Present)</strong></span></li>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section class="course" id="portfolio">
+    <h1>My Portfolio</h1>
+    <p>"The only way to do great work, is to love what you do."</p>
+
+    <div class="row">
+      <!-- <a href="index.html" target="_blank" class="course-col1"><img src="assets/Images/PersonalWebsite.png"> -->
+      <a href="index.html" target="_blank" class="course-col1"><img src="assets/Images/PersonalWebsite.png"
+          style="position:relative;top:30%;">
+        <div class="layer">
+          <h3>My Personal Website</h3>
+        </div>
+      </a>
+      <a href="calculator.html" target="_blank" class="course-col1"><img src="assets/Images/calculator.png">
+        <div class="layer">
+          <h3>Calculator</h3>
+        </div>
+      </a>
+      <a href="pokemon_api.html" target="_blank" class="course-col1"><img src="assets/Images/pokemon_logo.jpg">
+        <div class="layer">
+          <h3>Pokemon</h3>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="row">
+      <div class="course-col3">
+        <h3>Coming Soon!</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque aliquet turpis nulla, eleifend faucibus
+          est sollicitudin ut. Maecenas ut venenatis ex, et dapibus purus Donec sit.</p>
+      </div>
+      <div class="course-col3">
+        <h3>Coming Soon!</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque aliquet turpis nulla, eleifend faucibus
+          est sollicitudin ut. Maecenas ut venenatis ex, et dapibus purus Donec sit.</p>
+      </div>
+      <div class="course-col3">
+        <h3>Coming Soon!</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque aliquet turpis nulla, eleifend faucibus
+          est sollicitudin ut. Maecenas ut venenatis ex, et dapibus purus Donec sit.</p>
+      </div>
+    </div>
+  </section>
+
+  <!--- Referrals --->
+  <section class="referrals">
+    <h1>What People Say About Me</h1>
+    <p>"Reference"</p>
+    <div class="row">
+      <div class="referrals-col">
+        <img src="assets/Images/Mikaeel.png">
+        <div>
+          <p>Chris is determined and hard working, is a highly motivated software developer. He strives to achieve
+            excellence in all the projects he attempts. </p>
+          <h3>Mikaeel Moti</h3>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star-o"></i>
+        </div>
+      </div>
+      <div class="referrals-col">
+        <img src="assets/Images/Avikaar.jpeg">
+        <div>
+          <p>Chris is friendly, easy-going person and is determined to see your project through and through and leave
+            you satisfied.</p>
+          <h3>Avikaar Sonlall</h3>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star-half-o"></i>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!--- Call To Action --->
+  <section class="cta">
+    <h1>For Any Querries Contact Me Directly</h1>
+    <a href="#contactus" class="hero-btn">Contact Me</a>
+  </section>
+
+  <section class="contact-us" id="contactus">
+
+    <div class="row">
+      <div class="contact-col">
+        <div>
+          <i class="fa fa-map-marker"></i>
+          <span>
+            <h5>South Africa</h5>
+            <p>Bloemfontein</p>
+          </span>
+        </div>
+        <div>
+          <i class="fa fa-phone"></i>
+          <span>
+            <h5>+(27)76 31 80008</h5>
+            <p>Monday to Saturday, 10AM - 6PM</p>
+          </span>
+        </div>
+        <div>
+          <i class="fa fa-whatsapp"></i>
+          <span>
+            <a href="https://web.whatsapp.com/send?phone=+27763180008" target="_blank" rel="noreferrer noopener">
+              <h5>+(27)76 31 80008</h5>
+            </a>
+            <p>Monday to Saturday, 10AM - 6PM</p>
+          </span>
+        </div>
+        <!-- <div>
+          <i class="fa fa-envelope-o"></i>
+          <span>
+            <a href="mailto:gycwang5597@gmail.com">
+              <h5>info@DevFnX.com</h5>
+            </a>
+            <p>Email us your query</p>
+          </span>
+        </div> -->
+      </div>
+      <!-- <div class="contact-col">
+
+        <form action="form-handler.php" method="post">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <input type="text" name="subject" placeholder="Subject" required>
+          <textarea rows="8" name="message" placeholder="Message" required></textarea>
+          <button type="submit" class="hero-btn red-btn">Send Message</button>
+        </form>
+
+
+      </div> -->
+    </div>
+
+  </section>
+
+  <!--- Footer --->
+  <section class="footer">
+    <!-- <h4>Socials</h4> -->
+    <p>Copyright © DevFnX</p>
+    <div class="icons">
+      <!-- <a href="https://www.facebook.com/Chris569S" target="_blank"><i class="fa fa-facebook"></i></a>
+      <a href="https://www.instagram.com/its_chrisw/" target="_blank"><i class="fa fa-instagram"></i></a> -->
+      <a href="https://www.linkedin.com/in/chris-wang-2604b4160/" target="_blank"><i class="fa fa-linkedin"></i></a>
+    </div>
+    <!-- <p>Made With <i class="fa fa-heart-o"></i> DevFnX </p> -->
+    <p>Made With <i class="fa fa-heart-o"></i> <a class="logo1" href="#">DevFnX</a> </p>
+  </section>
+  <!--- JS Scripts --->
+  <script>
+    var navLinks = document.getElementById("navLinks");
+    function showMenu() {
+      navLinks.style.right = "0";
+    }
+    function hideMenu() {
+      navLinks.style.right = "-200px";
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    var typed = new Typed(".auto-type", {
+      strings: [
+        "I am a <span class='fsdev'>Full-Stack Developer</span>",
+        "A <span class='gamer'>Gamer</span>",
+        "I'm <span class='highlight'>Chris</span> Nice to meet you",
+        ""
+      ],
+      typeSpeed: 100,
+      loop: true,
+      backDelay: 1100,
+      backSpeed: 30
+    });
+  </script>
+</body>
+
+</html>
+<script src="js/main.js"></script>

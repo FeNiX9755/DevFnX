@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator with Brackets</title>
+    <link rel="stylesheet" href="css/calculator.css">
+</head>
+
+<body style="background-color: white;">
+    <input type="button" class="btn" id="toggleTheme" value="Dark Mode" style="position: fixed;width: 7vw;top: 0;right: 0;height: 5vh;" onclick="toggleTheme()">
+    <div class="calculator" id="calculator">
+        <input type="text" id="display" class="display" disabled>
+        <input type="text" id="preview" class="preview" disabled>
+        <div class="buttons">
+            <button class="btn clear" onclick="clearDisplay()">C</button>
+            <button class="btn operator" onclick="toggleParentheses()">()</button>
+            <button class="btn operator" onclick="appendCharacter('%')">%</button>
+            <button class="btn operator" onclick="appendCharacter('/')">÷</button>
+
+            <button class="btn" onclick="appendCharacter('7')">7</button>
+            <button class="btn" onclick="appendCharacter('8')">8</button>
+            <button class="btn" onclick="appendCharacter('9')">9</button>
+            <button class="btn operator" onclick="appendCharacter('*')">X</button>
+
+            <button class="btn" onclick="appendCharacter('4')">4</button>
+            <button class="btn" onclick="appendCharacter('5')">5</button>
+            <button class="btn" onclick="appendCharacter('6')">6</button>
+            <button class="btn operator" onclick="appendCharacter('-')">-</button>
+
+            <button class="btn" onclick="appendCharacter('1')">1</button>
+            <button class="btn" onclick="appendCharacter('2')">2</button>
+            <button class="btn" onclick="appendCharacter('3')">3</button>
+            <button class="btn operator" onclick="appendCharacter('+')">+</button>
+
+            <button class="btn zero" onclick="appendCharacter('0')">0</button>
+            <button class="btn" onclick="appendCharacter('.')">.</button>
+            <button class="btn operator" onclick="deleteLast()">←</button>
+            
+            <button class="btn equal" onclick="calculate()">=</button>
+        </div>
+    </div>
+    <script src="js/calculator.js"></script>
+</body>
+
+</html>

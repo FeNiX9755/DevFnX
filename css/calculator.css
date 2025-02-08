@@ -1,0 +1,114 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.calculator {
+    width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    background-color: rgb(42, 45, 52);
+}
+
+.display-container {
+    display: flex;
+    align-items: center;
+}
+
+.display {
+    width: 100%;
+    height: 60px;
+    font-size: 2.5rem;
+    margin-right: 10px;
+    padding: 10px;
+    text-align: right;
+    border: 2px solid #007BFF;
+    border-radius: 10px;
+    background-color: #eaeaea;
+}
+
+.preview {
+    width: 100%;
+    height: 40px;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    padding: 10px;
+    text-align: right;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.btn {
+    width: 100%;
+    height: 60px;
+    font-size: 1.5rem;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn:hover {
+    background-color: #d0d0d0;
+}
+
+.clear {
+    background-color: #e44c63;
+    color: white;
+}
+
+.clear:hover {
+    background-color: #c03950;
+}
+
+.operator {
+    background-color: #007BFF;
+    color: white;
+}
+
+.operator:hover {
+    background-color: #0056b3;
+}
+
+.equal {
+    background-color: #28a745;
+    color: white;
+}
+
+.equal:hover {
+    background-color: #218838;
+}
+
+.zero {
+    grid-column: span 1;
+    /* Make the zero button wider */
+}
+
+.btn:active {
+    transform: scale(0.95);
+}

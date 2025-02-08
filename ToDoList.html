@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <style>
+        body {
+            background-color: #333;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            margin: 50px auto;
+            width: 400px;
+            padding: 20px;
+            background-color: #222;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            flex: 1;
+            text-align: left;
+            padding-right: 10px;
+        }
+
+        .form-group input,
+        .form-group select {
+            flex: 2;
+            padding: 5px;
+            width: 100%;
+            border-radius: 4px;
+            border: 1px solid #555;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Styling for task list items */
+        ul#taskList {
+            list-style-type: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        ul#taskList li {
+            margin: 15px 0;
+            background-color: #444;
+            padding: 10px;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        ul#taskList li h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        ul#taskList li p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        ul#taskList li .due-date {
+            font-style: italic;
+            color: #bbb;
+        }
+
+        ul#taskList li .edit-btn,
+        .save-btn {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background-color: #28a745;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        ul#taskList li .save-btn {
+            background-color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>To Do List</h1>
+        <form id="todoForm">
+            <div class="form-group">
+                <label for="task_description">Task Description:</label>
+                <input type="text" id="task_description" required>
+            </div>
+            <div class="form-group">
+                <label for="priority">Priority:</label>
+                <select id="priority">
+                    <option value="" disabled selected>Priority</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="due_date">Due Date:</label>
+                <input type="date" id="due_date">
+            </div>
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <input type="text" id="category">
+            </div>
+            <div class="form-group">
+                <label for="reminder_time">Reminder Time:</label>
+                <input type="time" id="reminder_time">
+            </div>
+            <button type="button" onclick="addTask()">Add</button>
+        </form>
+
+        <h2>Task List</h2>
+        <ul id="taskList"></ul>
+    </div>
+
+    <script>
+        // Function to add a new task
+        function addTask() {
+            const task_description = document.getElementById('task_description').value;
+            const priority = document.getElementById('priority').value;
+            const due_date = document.getElementById('due_date').value;
+            const category = document.getElementById('category').value;
+            const reminder_time = document.getElementById('reminder_time').value;
+
+            post('functions/tasks.php', {
+                addTask: true,
+                task_description: task_description,
+                priority: priority,
+                due_date: due_date,
+                category: category,
+                reminder_time: reminder_time
+            }).then((result) => {
+                console.log(result);
+                LoadToDo(); // Refresh the task list
+                document.getElementById('todoForm').reset(); // Clear the form
+            });
+        }
+
+        // Updated function for loading tasks with datetime-local input
+        function LoadToDo() {
+            post('functions/tasks.php', { loadTasks: true })
+                .then(tasks => {
+                    const taskList = document.getElementById('taskList');
+                    taskList.innerHTML = ''; // Clear current list
+                    tasks.forEach(task => {
+                        const li = document.createElement('li');
+                        li.classList.add(task.status === '1' ? 'completed' : '');
+                        // Parse timestamp into 'YYYY-MM-DDTHH:MM' for datetime-local input
+                        const reminderTime = task.reminder_time ? new Date(task.reminder_time).toISOString().slice(0, 16) : '';
+
+                        li.innerHTML = `
+                    <h3><input type="text" value="${task.task_description}" disabled /> - Priority:
+                    <input type="text" value="${task.priority}" disabled /></h3>
+                    <p>Category: <input type="text" value="${task.category}" disabled /></p>
+                    <p class="due-date">Due: <input type="date" value="${task.due_date}" disabled /></p>
+                    <p>Reminder: <input type="datetime-local" value="${reminderTime}" disabled /></p>
+                    <button class="edit-btn" onclick="editTask(this, ${task.record})">Edit</button>
+                    <button class="save-btn" style="display: none;" onclick="saveTask(this, ${task.record})">Save</button>
+                    <button class="complete-btn" onclick="completeTask(${task.record})">Complete</button>
+                    <button class="delete-btn" onclick="deleteTask(${task.record})">Delete</button>
+                `;
+                        taskList.appendChild(li);
+                    });
+                });
+        }
+
+
+        function editTask(button, taskId) {
+            const listItem = button.parentNode;
+            const inputs = listItem.querySelectorAll('input');
+
+            // Enable all inputs
+            inputs.forEach(input => input.disabled = false);
+
+            // Show Save button and hide Edit button
+            listItem.querySelector('.save-btn').style.display = 'inline-block';
+            button.style.display = 'none';
+        }
+
+        // Function to save the updated task
+        function saveTask(button, taskId) {
+            const listItem = button.parentNode;
+
+            const task_description = listItem.querySelector('input[type="text"]').value;
+            const priority = listItem.querySelector('input[type="text"]:nth-of-type(2)').value;
+            const category = listItem.querySelector('input[type="text"]:nth-of-type(3)').value;
+            const due_date = listItem.querySelector('input[type="date"]').value;
+            const reminder_time = listItem.querySelector('input[type="datetime-local"]').value; // Get datetime-local value
+
+            post('tasks.php', {
+                updateTask: true,
+                task_id: taskId,
+                task_description: task_description,
+                priority: priority,
+                category: category,
+                due_date: due_date,
+                reminder_time: reminder_time
+            }).then(result => {
+                console.log(result);
+                LoadToDo(); // Reload task list
+            });
+        }
+
+        // Function to mark task as complete
+        function completeTask(taskId) {
+            post('functions/tasks.php', { completeTask: true, task_id: taskId })
+                .then((result) => {
+                    console.log(result);
+                    LoadToDo(); // Reload task list to reflect completed task
+                });
+        }
+
+        // Function to delete a task
+        function deleteTask(taskId) {
+            if (confirm('Are you sure you want to delete this task?')) {
+                post('functions/tasks.php', { deleteTask: true, task_id: taskId })
+                    .then((result) => {
+                        console.log(result);
+                        LoadToDo(); // Reload task list to reflect deletion
+                    });
+            }
+        }
+
+        // Placeholder for the post function
+        async function post(url, data) {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+            return response.json();
+        }
+
+        // Initial load of tasks
+        LoadToDo();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokeAPI</title>
+    <style>
+        .sprite-container {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .pokemon-sprite {
+            width: 150px;
+            height: auto;
+        }
+
+        .search-options {
+            margin-bottom: 10px;
+        }
+
+        #autocomplete-list {
+            border: 1px solid #ccc;
+            max-height: 200px;
+            overflow-y: auto;
+            position: absolute;
+            background-color: white;
+            width: 200px;
+        }
+
+        #autocomplete-list div {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        #autocomplete-list div:hover {
+            background-color: #ddd;
+        }
+
+        /* From Uiverse.io by Yaya12085 */
+        .radio-inputs {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            border-radius: 0.5rem;
+            background-color: #EEE;
+            box-sizing: border-box;
+            box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+            padding: 0.25rem;
+            width: 300px;
+            font-size: 14px;
+        }
+
+        .radio-inputs .radio {
+            flex: 1 1 auto;
+            text-align: center;
+        }
+
+        .radio-inputs .radio input {
+            display: none;
+        }
+
+        .radio-inputs .radio .name {
+            display: flex;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            border: none;
+            padding: .5rem 0;
+            color: rgba(51, 65, 85, 1);
+            transition: all .15s ease-in-out;
+        }
+
+        .radio-inputs .radio input:checked+.name {
+            background-color: skyblue;
+            font-weight: 600;
+        }
+
+        .input {
+            color: black;
+            border: 2px solid #8707ff;
+            border-radius: 10px;
+            padding: 10px 25px;
+            background: transparent;
+            max-width: 190px;
+        }
+
+        .input:active {
+            box-shadow: 2px 2px 15px #8707ff inset;
+        }
+
+        /* From Uiverse.io by reshades */
+        .button {
+            background-color: #ffffff00;
+            color: black;
+            width: 8.5em;
+            height: 2.9em;
+            border: #3654ff 0.2em solid;
+            border-radius: 11px;
+            text-align: right;
+            transition: all 0.6s ease;
+        }
+
+        .button:hover {
+            background-color: #3654ff;
+            cursor: pointer;
+        }
+
+        .button svg {
+            width: 1.6em;
+            margin: -0.2em 0.8em 1em;
+            position: absolute;
+            display: flex;
+            transition: all 0.6s ease;
+        }
+
+        .button:hover svg {
+            transform: translateX(5px);
+        }
+
+        .text {
+            margin: 0 1.5em
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="search-area">
+        <div class="radio-inputs">
+            <label class="radio">
+                <input type="radio" id="pokemon" value="pokemon" name="category" checked="">
+                <span class="name">Pokémon</span>
+            </label>
+            <label class="radio">
+                <input type="radio" id="berries" value="berries" name="category">
+                <span class="name">Berries</span>
+            </label>
+
+            <label class="radio">
+                <input type="radio" id="items" value="items" name="category">
+                <span class="name">Items</span>
+            </label>
+
+            <label class="radio">
+                <input type="radio" id="moves" value="moves" name="category">
+                <span class="name">Moves</span>
+            </label>
+        </div>
+        <input type="text" id="pokemon-search" placeholder="Type something here...." class="input"
+            oninput="performAutocomplete(this.value)" />
+
+        <div id="autocomplete-list"></div>
+
+
+        <button class="button" onclick="fetchData()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75">
+                </path>
+            </svg>
+
+
+            <div class="text">
+                Search
+            </div>
+
+        </button>
+    </div>
+
+    <div id="pokemon-container"></div>
+    <script src="js/main.js"></script>
+    <script>
+        // Function to handle autocomplete
+        async function performAutocomplete(searchQuery) {
+            const selectedCategory = document.querySelector('input[name="category"]:checked')?.value;
+
+            // If no radio button is selected, don't proceed with autocomplete
+            if (!selectedCategory) return;
+
+            let apiUrl = '';
+            switch (selectedCategory) {
+                case 'pokemon':
+                    apiUrl = 'https://pokeapi.co/api/v2/pokemon?limit=10000'; // Pokémon endpoint
+                    break;
+                case 'berries':
+                    apiUrl = 'https://pokeapi.co/api/v2/berry?limit=100'; // Berries endpoint
+                    break;
+                case 'items':
+                    apiUrl = 'https://pokeapi.co/api/v2/item?limit=100'; // Items endpoint
+                    break;
+                case 'moves':
+                    apiUrl = 'https://pokeapi.co/api/v2/move?limit=100'; // Moves endpoint
+                    break;
+                default:
+                    return; // If the selected category doesn't have autocomplete, exit
+            }
+
+            // Fetch data from API
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                // Filter results based on search input
+                const results = data.results.filter(item => item.name.toLowerCase().includes(searchQuery.toLowerCase()));
+
+                // Display autocomplete suggestions
+                displayAutocomplete(results);
+            } catch (error) {
+                console.error('Error fetching autocomplete data:', error);
+            }
+        }
+
+        // Function to display autocomplete suggestions
+        function displayAutocomplete(results) {
+            const autocompleteList = document.getElementById('autocomplete-list');
+            autocompleteList.innerHTML = ''; // Clear previous suggestions
+
+            results.forEach(result => {
+                const div = document.createElement('div');
+                div.textContent = result.name;
+                div.onclick = function () {
+                    document.getElementById('pokemon-search').value = result.name;
+                    autocompleteList.innerHTML = ''; // Clear suggestions after selection
+                };
+                autocompleteList.appendChild(div);
+            });
+        }
+
+        // Fetches data from PokeAPI based on the search input and selected radio button
+        async function fetchData() {
+            const searchQuery = document.getElementById('pokemon-search').value.toLowerCase();
+
+            // Collect the selected radio button value
+            const selectedCategory = document.querySelector('input[name="category"]:checked')?.value;
+
+            if (!selectedCategory) {
+                alert('Please select a category');
+                return;
+            }
+
+            // Construct API URL based on the selected category
+            let apiUrl = '';
+            switch (selectedCategory) {
+                case 'pokemon':
+                    apiUrl = `https://pokeapi.co/api/v2/pokemon/${searchQuery}`;
+                    break;
+                case 'berries':
+                    apiUrl = `https://pokeapi.co/api/v2/berry/${searchQuery}`;
+                    break;
+                case 'evolution':
+                    apiUrl = `https://pokeapi.co/api/v2/evolution-chain/${searchQuery}`;
+                    break;
+                case 'items':
+                    apiUrl = `https://pokeapi.co/api/v2/item/${searchQuery}`;
+                    break;
+                case 'location':
+                    apiUrl = `https://pokeapi.co/api/v2/location/${searchQuery}`;
+                    break;
+                case 'machines':
+                    apiUrl = `https://pokeapi.co/api/v2/machine/${searchQuery}`;
+                    break;
+                case 'moves':
+                    apiUrl = `https://pokeapi.co/api/v2/move/${searchQuery}`;
+                    break;
+                default:
+                    return;
+            }
+
+            // Fetch data from the API
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error('Error fetching data');
+                }
+                const data = await response.json();
+
+                // Display fetched data
+                displayData(data, selectedCategory);
+            } catch (error) {
+                console.error(error);
+                document.getElementById('pokemon-container').innerHTML = `<p>Error: Could not fetch data</p>`;
+            }
+        }
+
+        // Display the fetched data in the DOM
+        function displayData(data, category) {
+            console.log(data);
+            const container = document.getElementById('pokemon-container');
+            container.innerHTML = `<h2>${category.toUpperCase()} Data</h2>`;
+
+            switch (category) {
+                case 'pokemon':
+                    container.innerHTML += `
+                        <h3>Name: ${data.name.toUpperCase()}</h3>
+                        <div class="sprite-container">
+                            ${data.sprites.front_default ? `<img src="${data.sprites.front_default}" alt="${data.name}" class="pokemon-sprite">` : ''}
+                            ${data.sprites.back_default ? `<img src="${data.sprites.back_default}" alt="${data.name}" class="pokemon-sprite">` : ''}
+                        </div>
+                        <p>Height: ${data.height}</p>
+                        <p>Weight: ${data.weight}</p>
+                    `;
+                    break;
+                case 'berries':
+                    container.innerHTML += `<p>Berry Name: ${data.name}</p><p>Size: ${data.size}</p>`;
+                    break;
+                case 'evolution':
+                    container.innerHTML += `<p>Evolution Chain ID: ${data.id}</p>`;
+                    break;
+                case 'items':
+                    container.innerHTML += `<p>Item Name: ${data.name}</p><p>Cost: ${data.cost}</p>`;
+                    break;
+                case 'location':
+                    container.innerHTML += `<p>Location Name: ${data.name}</p>`;
+                    break;
+                case 'machines':
+                    container.innerHTML += `<p>Machine ID: ${data.id}</p>`;
+                    break;
+                case 'moves':
+                    container.innerHTML += `<p>Move Name: ${data.name}</p><p>Power: ${data.power || 'N/A'}</p>`;
+                    break;
+                default:
+                    container.innerHTML = `<p>No data available</p>`;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevFnX</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fork-awesome/1.2.0/css/fork-awesome.min.css">
+</head>
+
+<!--- this is the header --->
+
+<body>
+  <section class="sub-header">
+
+    <!--- navigation bar --->
+
+    <nav id="navbar" class="navbar">
+      <a class="logo" href="index.html">DevFnX</a>
+      <div class="nav-links" id="navLinks">
+        <i class="fa fa-times" onclick="hideMenu()"></i>
+        <ul>
+          <!-- <li><a href="index.html"><strong>Home</strong></a></li> -->
+          <li><a href="about.html"><strong>About</strong></a></li>
+          <li><a href="portfolio.html"><strong>Portfolio</strong></a></li>
+          <!--- <li><a href="blog.html"><strong>Blog</strong></a></li> --->
+          <li><a href="contact.html"><strong>Contact</strong></a></li>
+        </ul>
+      </div>
+      <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+
+    <div class="text-box">
+      <h1>Contact Us</h1>
+      <a href="https://web.whatsapp.com/send?phone=+27763180008" target="_blank" class="hero-btn">Get in Contact With
+        Me</a>
+    </div>
+
+  </section>
+
+  <!--- contact us --->
+  <!--- This is the Map Code-->
+  <!-- <section class="location">
+    <iframe src="https://www.google.com/maps/d/embed?mid=1Vvc87Sjc1Zxf_VRogbp60jOpdWs&hl=en_US&ehbc=2E312F" width="640" height="480"></iframe>
+  </section> -->
+
+  <section class="contact-us">
+
+    <div class="row">
+      <div class="contact-col">
+        <div>
+          <i class="fa fa-map-marker"></i>
+          <span>
+            <h5>South Africa</h5>
+            <p>Bloemfontein</p>
+          </span>
+        </div>
+        <div>
+          <i class="fa fa-phone"></i>
+          <span>
+            <h5>+(27)76 31 80008</h5>
+            <p>Monday to Saturday, 10AM - 6PM</p>
+          </span>
+        </div>
+        <div>
+          <i class="fa fa-whatsapp"></i>
+          <span>
+            <a href="https://web.whatsapp.com/send?phone=+27763180008" target="_blank" rel="noreferrer noopener">
+              <h5>+(27)76 31 80008</h5>
+            </a>
+            <p>Monday to Saturday, 10AM - 6PM</p>
+          </span>
+        </div>
+        <div>
+          <i class="fa fa-envelope-o"></i>
+          <span>
+            <a href="mailto:gycwang5597@gmail.com">
+              <h5>info@DevFnX.com</h5>
+            </a>
+            <p>Email us your query</p>
+          </span>
+        </div>
+      </div>
+      <div class="contact-col">
+
+        <form action="form-handler.php" method="post">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <input type="text" name="subject" placeholder="Subject" required>
+          <textarea rows="8" name="message" placeholder="Message" required></textarea>
+          <button type="submit" class="hero-btn red-btn">Send Message</button>
+        </form>
+
+
+      </div>
+    </div>
+
+  </section>
+
+  <!--- Footer --->
+
+  <section class="footer">
+    <h4>Socials</h4>
+    <p>Copyright © DevFnX</p>
+    <div class="icons">
+      <!-- <a href="https://www.facebook.com/Chris569S" target="_blank"><i class="fa fa-facebook"></i></a>
+      <a href="https://www.instagram.com/its_chrisw/" target="_blank"><i class="fa fa-instagram"></i></a> -->
+      <a href="https://www.linkedin.com/in/chris-wang-2604b4160/" target="_blank"><i class="fa fa-linkedin"></i></a>
+    </div>
+    <p>Made With <i class="fa fa-heart-o"></i> DevFnX </p>
+  </section>
+  <!---JS for toggle menu-------->
+  <script>
+
+    var navLinks = document.getElementById("navLinks");
+
+    function showMenu() {
+      navLinks.style.right = "0";
+    }
+
+    function hideMenu() {
+      navLinks.style.right = "-200px";
+    }
+
+  </script>
+
+</body>
+
+</html>
